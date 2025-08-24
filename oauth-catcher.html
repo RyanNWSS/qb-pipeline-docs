@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OAuth Code Catcher</title>
+  <style>
+    body {
+      background: #111;
+      color: #0f0;
+      font-family: monospace;
+      padding: 2em;
+    }
+    h1, h2, h3 {
+      color: #0ff;
+    }
+    pre {
+      background: #222;
+      padding: 1em;
+      border: 1px solid #0f0;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔐 OAuth Code Catcher</h1>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const realmId = params.get("realmId");
+    const state = params.get("state");
+
+    if (code) {
+      document.write(`<h2>✅ Code received:</h2><pre>${code}</pre>`);
+      document.write(`<h3>Realm ID:</h3><pre>${realmId}</pre>`);
+      document.write(`<h3>State:</h3><pre>${state}</pre>`);
+    } else {
+      document.write(`<h2⚠️ No code detected</h2>`);
+      document.write(`<pre>Full URL: ${window.location.href}</pre>`);
+    }
+  </script>
+</body>
+</html>
